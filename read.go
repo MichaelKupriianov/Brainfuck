@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// Read a string with program, and check that it is correct
 func read() string {
 	var program string
 	fmt.Scan(&program)

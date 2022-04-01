@@ -6,6 +6,7 @@ type instruction interface {
 	execute(*array, *int, *[]instruction)
 }
 
+// Increases the value in current cell by 1, corresponds to the "+" symbol in brainfuck syntax
 type plus struct{}
 
 func (plus) execute(a *array, p *int, code *[]instruction) {
@@ -13,6 +14,7 @@ func (plus) execute(a *array, p *int, code *[]instruction) {
 	*p++
 }
 
+// Decreases the value in current cell by 1, corresponds to the "-" symbol in brainfuck syntax
 type minus struct{}
 
 func (minus) execute(a *array, p *int, code *[]instruction) {
@@ -20,13 +22,15 @@ func (minus) execute(a *array, p *int, code *[]instruction) {
 	*p++
 }
 
-type print struct{}
+// Print the value in current cell, corresponds to the "." symbol in brainfuck syntax
+type printValue struct{}
 
-func (print) execute(a *array, p *int, code *[]instruction) {
+func (printValue) execute(a *array, p *int, code *[]instruction) {
 	fmt.Print(a.cells[a.pointer], " ")
 	*p++
 }
 
+// Terminate the loop if value in current cell is 0, corresponds to the "[" symbol in brainfuck syntax
 type startCycle struct{}
 
 func (startCycle) execute(a *array, p *int, code *[]instruction) {
@@ -52,6 +56,7 @@ func (startCycle) execute(a *array, p *int, code *[]instruction) {
 	}
 }
 
+// Continue the loop if value in current cell is not 0, corresponds to the "]" symbol in brainfuck syntax
 type endCycle struct{}
 
 func (endCycle) execute(a *array, p *int, code *[]instruction) {
@@ -77,6 +82,7 @@ func (endCycle) execute(a *array, p *int, code *[]instruction) {
 	}
 }
 
+// Move to next cell, corresponds to the ">" symbol in brainfuck syntax
 type increment struct{}
 
 func (increment) execute(a *array, p *int, code *[]instruction) {
@@ -84,6 +90,7 @@ func (increment) execute(a *array, p *int, code *[]instruction) {
 	*p++
 }
 
+// Move to previous cell, corresponds to the "<" symbol in brainfuck syntax
 type decrement struct{}
 
 func (decrement) execute(a *array, p *int, code *[]instruction) {
@@ -91,12 +98,14 @@ func (decrement) execute(a *array, p *int, code *[]instruction) {
 	*p++
 }
 
+// Marks start of the program
 type startProgram struct{}
 
 func (startProgram) execute(a *array, p *int, code *[]instruction) {
 	*p++
 }
 
+// Marks end of the program
 type endProgram struct{}
 
 func (endProgram) execute(a *array, p *int, code *[]instruction) {

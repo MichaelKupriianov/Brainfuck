@@ -10,7 +10,7 @@ func tokenize(s string) []instruction {
 		case '-':
 			result = append(result, minus{})
 		case '.':
-			result = append(result, print{})
+			result = append(result, printValue{})
 		case '[':
 			result = append(result, startCycle{})
 		case ']':
