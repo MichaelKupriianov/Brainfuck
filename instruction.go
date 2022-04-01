@@ -28,7 +28,7 @@ func (printValue) execute(a *array, p *int, code *[]instruction) {
 	*p++
 }
 
-// Terminate the loop if value in current cell is 0, corresponds to the "[" symbol in brainfuck syntax
+// Terminate the cycle if value in current cell is 0, corresponds to the "[" symbol in brainfuck syntax
 type startCycle struct{}
 
 func (startCycle) execute(a *array, p *int, code *[]instruction) {
@@ -54,7 +54,7 @@ func (startCycle) execute(a *array, p *int, code *[]instruction) {
 	}
 }
 
-// Continue the loop if value in current cell is not 0, corresponds to the "]" symbol in brainfuck syntax
+// Continue the cycle if value in current cell is not 0, corresponds to the "]" symbol in brainfuck syntax
 type endCycle struct{}
 
 func (endCycle) execute(a *array, p *int, code *[]instruction) {
