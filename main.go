@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
 	defer func() {
@@ -10,5 +13,5 @@ func main() {
 		}
 	}()
 	code := read()
-	executeProgram(code)
+	executeProgram(code, os.Stdout)
 }

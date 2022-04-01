@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type instruction interface {
 	execute(*array, *int, *[]instruction)
 }
@@ -26,7 +24,7 @@ func (minus) execute(a *array, p *int, code *[]instruction) {
 type printValue struct{}
 
 func (printValue) execute(a *array, p *int, code *[]instruction) {
-	fmt.Print(a.cells[a.pointer], " ")
+	a.printValue()
 	*p++
 }
 
